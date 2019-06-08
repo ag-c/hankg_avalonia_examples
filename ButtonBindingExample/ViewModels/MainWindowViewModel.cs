@@ -1,6 +1,7 @@
 ﻿using System;
 using ReactiveUI;
 using System.Collections.Generic;
+using System.Reactive;
 using System.Text;
 
 namespace ButtonBindingExample.ViewModels
@@ -14,6 +15,12 @@ namespace ButtonBindingExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref clickStatusUpdate, value);
         }
 
+        public MainWindowViewModel()
+        {
+            UpdateTextFromReactiveCommand = ReactiveCommand.Create(
+                () => { UpdateTextStatus("Reactive Command Button"); });
+        }
+
         public void UpdateFromSimpleMethod()
         {
             UpdateTextStatus("Simple Method Button");
@@ -23,5 +30,8 @@ namespace ButtonBindingExample.ViewModels
         {
             ClickStatusUpdate = $"{nameOfUpdater} updated me at {DateTime.Now}";
         }
+        
+        public ReactiveCommand<Unit, Unit> UpdateTextFromReactiveCommand { get; }
+        
     }
 }

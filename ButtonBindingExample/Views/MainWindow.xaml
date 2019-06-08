@@ -34,7 +34,8 @@
     
     <Button Grid.Row="2" 
             Grid.Column="0" 
-            Content="Reactive Command"/>
+            Content="Reactive Command"
+            Command="{Binding UpdateTextFromReactiveCommand}"/>
 
     <Button Grid.Row="3" 
             Grid.Column="0" 
