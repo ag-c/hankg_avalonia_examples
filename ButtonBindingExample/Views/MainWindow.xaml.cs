@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using ButtonBindingExample.ViewModels;
@@ -29,6 +30,11 @@ namespace ButtonBindingExample.Views
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             SpecificViewModel.UpdateTextStatus("On Click XAML Button");
+        }
+
+        private void OnPointerEnter(object sender, PointerEventArgs e)
+        {
+            SpecificViewModel.UpdateTextStatus("On Pointer Entered Button");
         }
     }
 }
