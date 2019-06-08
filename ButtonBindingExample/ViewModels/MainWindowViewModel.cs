@@ -16,7 +16,7 @@ namespace ButtonBindingExample.ViewModels
 
         public void UpdateTextStatus(string nameOfUpdater)
         {
-            ClickStatusUpdate = $"{nameOfUpdater} ${DateTime.Now}";
+            ClickStatusUpdate = $"{nameOfUpdater} updated me at ${DateTime.Now}";
         }
     }
 }
