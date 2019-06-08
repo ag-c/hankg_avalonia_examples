@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+MinimumVisualStudioVersion = 10.0.40219.1
+VisualStudioVersion = 15.0.27009.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{04DC3F0E-14D1-43B7-B8CD-AE241740F37E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04DC3F0E-14D1-43B7-B8CD-AE241740F37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DC3F0E-14D1-43B7-B8CD-AE241740F37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DC3F0E-14D1-43B7-B8CD-AE241740F37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DC3F0E-14D1-43B7-B8CD-AE241740F37E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(AvalonStudioProperties) = preSolution
+		StartupItem = {04DC3F0E-14D1-43B7-B8CD-AE241740F37E}
+	EndGlobalSection
+EndGlobal
