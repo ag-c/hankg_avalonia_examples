@@ -47,11 +47,11 @@
             Name="ClickCodeButton" 
             Content="Click Code Button"/>
 
-    
     <Button Grid.Row="5" 
             Grid.Column="0" 
+            Name="OnButtonMouseUp"
+            PointerEnter="OnPointerEnter"
             Content="Mouse Up Code"/>
-    
   </Grid>
 
 </Window>
