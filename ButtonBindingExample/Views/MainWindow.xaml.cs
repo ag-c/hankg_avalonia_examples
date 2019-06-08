@@ -18,7 +18,8 @@ namespace ButtonBindingExample.Views
             var clickCodeButton = this.Find<Button>("ClickCodeButton");
             clickCodeButton.Click += delegate
             {
-                SpecificViewModel.UpdateTextStatus("On Click Code Button");
+                //SpecificViewModel.UpdateTextStatus("On Click Code Button");
+                SpecificViewModel.SelectFolderAsync();
             };
         }
 
@@ -29,7 +30,8 @@ namespace ButtonBindingExample.Views
 
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
-            SpecificViewModel.UpdateTextStatus("On Click XAML Button");
+            //SpecificViewModel.UpdateTextStatus("On Click XAML Button");
+            SpecificViewModel.SelectFolderAsync();
         }
 
         private void OnPointerEnter(object sender, PointerEventArgs e)

@@ -1,8 +1,11 @@
 ﻿using System;
 using ReactiveUI;
 using System.Collections.Generic;
+using System.IO;
 using System.Reactive;
 using System.Text;
+using Avalonia;
+using Avalonia.Controls;
 
 namespace ButtonBindingExample.ViewModels
 {
@@ -17,13 +20,13 @@ namespace ButtonBindingExample.ViewModels
 
         public MainWindowViewModel()
         {
-            UpdateTextFromReactiveCommand = ReactiveCommand.Create(
-                () => { UpdateTextStatus("Reactive Command Button"); });
+            UpdateTextFromReactiveCommand = ReactiveCommand.Create(SelectFolderAsync);
         }
 
         public void UpdateFromSimpleMethod()
         {
-            UpdateTextStatus("Simple Method Button");
+            //UpdateTextStatus("Simple Method Button");
+            SelectFolderAsync();
         }
 
         public void UpdateTextStatus(string nameOfUpdater)
@@ -33,5 +36,23 @@ namespace ButtonBindingExample.ViewModels
         
         public ReactiveCommand<Unit, Unit> UpdateTextFromReactiveCommand { get; }
         
+        public async void SelectFolderAsync()
+        {
+            var dialog = new OpenFolderDialog()
+            {
+                Title = "Select Folder...",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
+            };
+
+            var result = await dialog.ShowAsync(Application.Current.MainWindow);
+            if (result == null)
+            {
+                ClickStatusUpdate = "User canceled request";
+            }
+            else
+            {
+                ClickStatusUpdate = $"User Selected: {result}";
+            }
+        }
     }
 }

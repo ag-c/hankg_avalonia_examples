@@ -49,9 +49,8 @@
 
     <Button Grid.Row="5" 
             Grid.Column="0" 
-            Name="OnButtonMouseUp"
             PointerEnter="OnPointerEnter"
-            Content="Mouse Up Code"/>
+            Content="Mouse Pointer Enter"/>
   </Grid>
 
 </Window>
