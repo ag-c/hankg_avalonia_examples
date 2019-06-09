@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AdvancedButtonBinding.ViewModels;assembly=AdvancedButtonBinding"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        Width="450" Height="450"
+        x:Class="AdvancedButtonBinding.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AdvancedButtonBinding">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+        <Grid.Styles>
+            <Style Selector="Button">
+                <Setter Property="Margin" Value="3" />
+            </Style>
+            <Style Selector="TextBox">
+                <Setter Property="Margin" Value="3" />
+            </Style>
+        </Grid.Styles>
+        <TextBlock Grid.Row="0">Name: </TextBlock>
+        <TextBox Grid.Row="1" Text="{Binding Name}" />
+        <TextBlock Grid.Row="2">Greeting: </TextBlock>
+        <TextBox Grid.Row="3" Text="{Binding Greeting}" />
+        <Button Grid.Row="4" Content="Write Greeting" Command="{Binding WriteGreetingReactiveCommand}"
+                CommandParameter="{Binding Name}" />
+        <Button Grid.Row="5" Content="Generic Greeting" Command="{Binding WriteGreeting}" CommandParameter="User"
+                IsEnabled="{Binding #AllowedGreeting.IsChecked}" />
+        <CheckBox Grid.Row="6" Name="AllowedGreeting" IsChecked="True" Content="Allowed Generic Greeting" />
+    </Grid>
+
+</Window>
