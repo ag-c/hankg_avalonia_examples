@@ -26,8 +26,11 @@ namespace AdvancedButtonBinding.ViewModels
         {
             var buttonEnabled = this.WhenAnyValue(
                 x => x.Name,
-                x => !string.IsNullOrWhiteSpace(x)); 
-            WriteGreetingReactiveCommand = ReactiveCommand.Create<string>(name => { WriteGreeting(name); }, buttonEnabled);
+                x => this.Greeting,
+                x => (nameToCheck, greetingToCheck) => !string.IsNullOrWhiteSpace(nameToCheck) && string.IsNullOrWhiteSpace(greetingToCheck)); 
+            WriteGreetingReactiveCommand = ReactiveCommand.Create<string>(
+                name => { WriteGreeting(name); }, 
+                buttonEnabled);
         }
 
         public ReactiveCommand WriteGreetingReactiveCommand { get; }
