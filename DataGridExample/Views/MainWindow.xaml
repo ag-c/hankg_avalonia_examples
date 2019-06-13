@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:DataGridExample.ViewModels;assembly=DataGridExample"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800" Height="450"
+        x:Class="DataGridExample.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DataGridExample">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel>
+        <Button Content="Add New Person" Margin="5" Command="{Binding AddNewPerson}"/>
+        <DataGrid Items="{Binding People}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" 
+                                    Binding="{Binding FirstName}" 
+                                    Width="2*" />
+                <DataGridTextColumn Header="Last Name" 
+                                    Binding="{Binding LastName}" 
+                                    Width="2*" />
+                <DataGridTextColumn Header="Department" 
+                                    Binding="{Binding DepartmentNumber}" 
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
