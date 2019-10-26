@@ -19,8 +19,5 @@ namespace ButtonBindingExample
             => AppBuilder.Configure<App>()
                 .UseReactiveUI()
                 .UsePlatformDetect();
-
-        // Your application's entry point. Here you can initialize your MVVM framework, DI
-        // container, etc.
-     }
+    }
 }
