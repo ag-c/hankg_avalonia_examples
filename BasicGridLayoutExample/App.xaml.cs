@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -23,7 +24,7 @@ namespace BasicGridLayoutExample
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 desktop.MainWindow = window;
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
-                singleView.MainView = window;
+                throw new NotSupportedException("Only desktop applications are supported");
             base.OnFrameworkInitializationCompleted();
         }
     }

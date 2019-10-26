@@ -24,7 +24,7 @@ namespace AdvancedButtonBinding
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 desktop.MainWindow = window;
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
-                singleView.MainView = window;
+                throw new NotSupportedException("Only desktop applications are supported");
             base.OnFrameworkInitializationCompleted();
         }
 
