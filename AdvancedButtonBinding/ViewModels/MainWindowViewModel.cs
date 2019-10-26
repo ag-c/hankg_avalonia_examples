@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive;
-using System.Text;
+﻿using System.Reactive;
 using ReactiveUI;
 
 namespace AdvancedButtonBinding.ViewModels
@@ -33,7 +30,7 @@ namespace AdvancedButtonBinding.ViewModels
                 buttonEnabled);
         }
 
-        public ReactiveCommand WriteGreetingReactiveCommand { get; }
+        public ReactiveCommand<string,Unit> WriteGreetingReactiveCommand { get; }
 
         public void WriteGreeting(string personsName)
         {

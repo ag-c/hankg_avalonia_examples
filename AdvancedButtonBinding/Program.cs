@@ -1,8 +1,9 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Logging.Serilog;
 using AdvancedButtonBinding.ViewModels;
 using AdvancedButtonBinding.Views;
+using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 
 namespace AdvancedButtonBinding
 {
@@ -28,7 +29,7 @@ namespace AdvancedButtonBinding
             {
                 DataContext = new MainWindowViewModel(),
             };
-
+            
             app.Run(window);
         }
     }
