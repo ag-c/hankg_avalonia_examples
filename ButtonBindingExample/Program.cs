@@ -1,6 +1,7 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Logging.Serilog;
+using Avalonia.ReactiveUI;
 using ButtonBindingExample.ViewModels;
 using ButtonBindingExample.Views;
 
@@ -11,25 +12,15 @@ namespace ButtonBindingExample
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
-        public static void Main(string[] args) => BuildAvaloniaApp().Start(AppMain, args);
+        public static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 
         // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp()
+        public static AppBuilder BuildAvaloniaApp() 
             => AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .LogToDebug()
-                .UseReactiveUI();
+                .UseReactiveUI()
+                .UsePlatformDetect();
 
         // Your application's entry point. Here you can initialize your MVVM framework, DI
         // container, etc.
-        private static void AppMain(Application app, string[] args)
-        {
-            var window = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
-
-            app.Run(window);
-        }
-    }
+     }
 }

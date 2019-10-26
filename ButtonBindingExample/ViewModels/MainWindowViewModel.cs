@@ -1,11 +1,9 @@
 ﻿using System;
-using ReactiveUI;
-using System.Collections.Generic;
-using System.IO;
 using System.Reactive;
-using System.Text;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using ReactiveUI;
 
 namespace ButtonBindingExample.ViewModels
 {
@@ -41,10 +39,11 @@ namespace ButtonBindingExample.ViewModels
             var dialog = new OpenFolderDialog()
             {
                 Title = "Select Folder...",
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
+                Directory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
             };
 
-            var result = await dialog.ShowAsync(Application.Current.MainWindow);
+            var desktop = Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+            var result = await dialog.ShowAsync(desktop.MainWindow);
             if (result == null)
             {
                 ClickStatusUpdate = "User canceled request";
