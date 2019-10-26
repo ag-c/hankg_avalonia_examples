@@ -1,6 +1,7 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Logging.Serilog;
+using Avalonia.ReactiveUI;
 using BasicGridLayoutExample.ViewModels;
 using BasicGridLayoutExample.Views;
 
