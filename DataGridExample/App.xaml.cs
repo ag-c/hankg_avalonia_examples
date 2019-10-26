@@ -1,5 +1,8 @@
 using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using DataGridExample.ViewModels;
+using DataGridExample.Views;
 
 namespace DataGridExample
 {
@@ -9,5 +12,24 @@ namespace DataGridExample
         {
             AvaloniaXamlLoader.Load(this);
         }
-   }
+
+        public override void OnFrameworkInitializationCompleted()
+        {
+            var window = new MainWindow
+            {
+                DataContext = new MainWindowViewModel(),
+            };
+
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = window;
+            }
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+            {
+                singleView.MainView = window;
+            }
+            
+            base.OnFrameworkInitializationCompleted();
+        }
+    }
 }

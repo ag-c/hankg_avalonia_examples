@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive;
 using System.Text;
 using DataGridExample.Models;
 using ReactiveUI;
@@ -11,7 +12,7 @@ namespace DataGridExample.ViewModels
     {
         public ObservableCollection<Person> People { get; }
 
-        public ReactiveCommand AddNewPerson { get; }
+        public ReactiveCommand<Unit, Unit> AddNewPerson { get; }
 
         public MainWindowViewModel()
         {
