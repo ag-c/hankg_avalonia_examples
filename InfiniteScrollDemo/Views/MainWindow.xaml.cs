@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Net;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -17,6 +18,9 @@ namespace InfiniteScrollDemo.Views
 {
     public class MainWindow : Window
     {
+        private CompositeDisposable _disposables = new CompositeDisposable();
+
+        private CompositeDisposable _scrollViewerDisposables;
 
         private double _verticalHeightMax = 0.0;
 
@@ -25,48 +29,48 @@ namespace InfiniteScrollDemo.Views
             InitializeComponent();
 
             var listBox = this.FindControl<ListBox>("ListOfItems");
-            listBox.WhenAnyValue(lb => lb.Scroll.Offset)
-                .ForEachAsync(offset =>
+            listBox.GetObservable(ListBox.ScrollProperty)
+                .OfType<ScrollViewer>()
+                .Subscribe(sv =>
                 {
-                    if (offset.Y <= Double.Epsilon)
-                    {
-                        Console.WriteLine("At Top");
-                    }
+                    _scrollViewerDisposables?.Dispose();
+                    _scrollViewerDisposables = new CompositeDisposable();
 
-                    var delta = Math.Abs(_verticalHeightMax - offset.Y);
-                    if (delta <= Double.Epsilon)
-                    {
-                        Console.WriteLine("At Bottom");
-                        var vm = DataContext as MainWindowViewModel;
-                        vm?.AddItems();
-                    }
-                });
-            
-            listBox.PropertyChanged += (sender, args) =>
-            {
-                if (args.Property != ListBox.ScrollProperty)
-                {
-                    return;
-                }
+                    sv.GetObservable(ScrollViewer.VerticalScrollBarMaximumProperty)
+                        .Subscribe(newMax => _verticalHeightMax = newMax)
+                        .DisposeWith(_scrollViewerDisposables);
 
-                var scroll = listBox.Scroll as ScrollViewer;
-                scroll.PropertyChanged += (o, eventArgs) =>
-                {
-                    if (eventArgs.Property == ScrollViewer.VerticalScrollBarMaximumProperty)
-                    {
-                        if (eventArgs.NewValue is double value)
+
+                    sv.GetObservable(ScrollViewer.OffsetProperty)
+                        .ForEachAsync(offset =>
                         {
-                            this._verticalHeightMax = value;
-                        }
-                    }
-                };
-            };
+                            if (offset.Y <= Double.Epsilon)
+                            {
+                                Console.WriteLine("At Top");
+                            }
+
+                            var delta = Math.Abs(_verticalHeightMax - offset.Y);
+                            if (delta <= Double.Epsilon)
+                            {
+                                Console.WriteLine("At Bottom");
+                                var vm = DataContext as MainWindowViewModel;
+                                vm?.AddItems();
+                            }
+                        })
+                        .DisposeWith(_disposables);
+                }).DisposeWith(_disposables);
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }
-        
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            _scrollViewerDisposables.Dispose();
+            _disposables.Dispose();
+        }
     }
 }
