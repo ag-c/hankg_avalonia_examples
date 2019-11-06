@@ -31,6 +31,7 @@ namespace InfiniteScrollDemo.Views
             var listBox = this.FindControl<ListBox>("ListOfItems");
             listBox.GetObservable(ListBox.ScrollProperty)
                 .OfType<ScrollViewer>()
+                .Take(1)
                 .Subscribe(sv =>
                 {
                     _scrollViewerDisposables?.Dispose();
@@ -42,7 +43,7 @@ namespace InfiniteScrollDemo.Views
 
 
                     sv.GetObservable(ScrollViewer.OffsetProperty)
-                        .ForEachAsync(offset =>
+                        .Subscribe(offset =>
                         {
                             if (offset.Y <= Double.Epsilon)
                             {
@@ -56,8 +57,7 @@ namespace InfiniteScrollDemo.Views
                                 var vm = DataContext as MainWindowViewModel;
                                 vm?.AddItems();
                             }
-                        })
-                        .DisposeWith(_disposables);
+                        });
                 }).DisposeWith(_disposables);
         }
 
