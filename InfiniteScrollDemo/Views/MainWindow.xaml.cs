@@ -57,7 +57,7 @@ namespace InfiniteScrollDemo.Views
                                 var vm = DataContext as MainWindowViewModel;
                                 vm?.AddItems();
                             }
-                        });
+                        }).DisposeWith(_disposables);
                 }).DisposeWith(_disposables);
         }
 
