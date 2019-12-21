@@ -18,6 +18,11 @@ namespace MenusExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref _status, value);
         }
         
+        public void OnOpenClicked()
+        {
+            Status = $"Open clicked at {DateTime.Now}";
+        }
+        
         public MainWindowViewModel()
         {
             Status = $"Application started at {DateTime.Now}";
