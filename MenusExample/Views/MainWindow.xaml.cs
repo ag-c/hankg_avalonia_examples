@@ -18,16 +18,6 @@ namespace MenusExample.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-        
-        public void OnOpenClicked(object sender, EventArgs args)
-        {
-            var vm = DataContext as MainWindowViewModel;
-            if (vm == null)
-            {
-                return;
-            }
-            vm.Status = $"Open clicked at {DateTime.Now}";
-        }
 
         public void OnCloseClicked(object sender, EventArgs args)
         {
