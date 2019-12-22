@@ -11,6 +11,7 @@ namespace MenusExample
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+            Current.Name = "Menus Example";
         }
 
         public override void OnFrameworkInitializationCompleted()
